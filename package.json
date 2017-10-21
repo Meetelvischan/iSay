@@ -1,0 +1,20 @@
+{
+  "name": "elvischan_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.1",
+    "formidable": "^1.1.1",
+    "gm": "^1.23.0",
+    "mongodb": "*",
+    "silly-datetime": "^0.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Elvis Chan",
+  "license": "MIT"
+}

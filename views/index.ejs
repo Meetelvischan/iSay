@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Project Name</title>
+    <!-- 引入Bootstrap,jquery以及underscore -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src='js/jquery-1.11.1.min.js'></script>
+    <script src="js/underscore.js"></script>
+    
+    <style>
+      /* css在此 */
+    </style>
+  </head>
+  <body>
+    
+  
+  <script type="text/template" id="template">
+    <!-- 在此处填入需要渲染的模板 -->
+  </script>
+
+
+
+  <!-- jquery以及underscore操作 -->
+  <script>
+    $(function(){
+      //填充前台模板
+      for(var i= 0;i<arr.length;i++){
+      //将数据渲染进模板
+        var html = compiled({
+          key:value,
+        });
+        $("#目标").append($(html));
+      }
+    });
+  </script>
+</html>
