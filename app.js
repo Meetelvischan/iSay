@@ -7,7 +7,17 @@ let cookieParser = require('cookie-parser');  //cookie相关
 let session = require('express-session'); //session相关
 let md5 = require('./model/md5.js');  //md5加密
 let gm = require('gm'); //GraphicsMagick图像处理
+let router = require('./router/router.js');
 
 app.set('view engine','ejs'); //设置模板引擎
 app.use(express.static('./public'));  //设置静态服务 
+
+app.get('/',router.showIndex);
+app.get('/register',router.showRegister);
+
+app.post('/doRegister',router.doRegister);
+
+
+
+app.listen(3000);
 
