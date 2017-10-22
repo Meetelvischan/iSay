@@ -12,11 +12,22 @@ let router = require('./router/router.js');
 app.set('view engine','ejs'); //设置模板引擎
 app.use(express.static('./public'));  //设置静态服务 
 
+app.set('trust proxy',1); //sesson设置
+app.use(session({
+	secret:'Elvis',
+  	resave:true,
+  	saveUninitialized:true
+}))
+
 app.get('/',router.showIndex);
 app.get('/register',router.showRegister);
 
 app.post('/doRegister',router.doRegister);
 
+app.get('/login',router.showLogin);
+app.post('/doLogin',router.doLogin);
+
+app.get('/logout',router.doLogout);
 
 
 app.listen(3000);
