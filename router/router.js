@@ -129,7 +129,7 @@ exports.doLogout = function(req,res,next){
 //显示设置头像页面
 exports.showSetAvatar = function(req,res,next){
   if(req.session.login !=="1"){
-    res.redirect('/');
+    res.redirect('/login');
     return;
   }
   res.render('setAvatar',{
@@ -145,7 +145,7 @@ exports.doSetAvatar = function(req,res,next){
   form.uploadDir = path.normalize(__dirname+'/../avatar');
   form.parse(req,function(err,fields,files){
     if(err){
-      res.send("fail");
+      res.send("-3");
       return;
     }
     var oldpath = files.avatar.path;

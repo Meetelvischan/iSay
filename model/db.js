@@ -1,6 +1,8 @@
 var MongoClient = require('mongodb').MongoClient;
 var setting = require('../settings.js');
 
+init(); //对数据库进行初始化(添加索引)
+
 //封装数据库连接函数
 function __connectDB(callback){
     let url = setting.dbUrl;
@@ -12,6 +14,24 @@ function __connectDB(callback){
         }
       	callback(err,db);
         db.close();
+    })
+}
+
+//数据库初始化
+function init() {
+    __connectDB(function(err,db){
+        if(err){
+            console.log("初始化失败!");
+            return;
+        }
+        let username = setting.dbIndexName;
+        db.collection(setting.dbCollectionName).createIndex(
+            {username:1},
+            null,
+            function(err,result){
+                console.log("索引成功!");
+            }
+        )
     })
 }
 
