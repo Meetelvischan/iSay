@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>修改头像</title>
+    <!-- 引入Bootstrap,jquery以及underscore -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src='js/jquery-1.11.1.min.js'></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.Jcrop.js"></script>
+    <script src="/js/crop.js"></script>
+
+    
+  </head>
+  
+  <body>
+    <% include header.ejs %>
+    <br>
+    <div id="box-avatar">
+      <div class="container"></div>
+      <img src="/avatar/<%=avatar%>" id="target" alt="原图">
+      <div id="preview-pane">
+        <div class="preview-container">
+          <img src="/avatar/<%=avatar%>" class="jcrop-preview" alt="预览"/>
+        </div>
+      </div>
+      <br>
+      <input type="button" value="剪裁" id="btn" class="btn btn-info col-lg-4 col-lg-offset-4">
+      <br> 
+      <br>
+    </div>
+    <br>
+  
+
+    <% include footer.ejs %>
+  </body>  
+
+  <!-- jquery以及underscore操作 -->
+  <script>
+    $("input").click(function () {
+      var w = parseInt($(".jcrop-holder>div:first").css("width"));
+      var h = parseInt($(".jcrop-holder>div:first").css("height"));
+      var x = parseInt($(".jcrop-holder>div:first").css("left"));
+      var y = parseInt($(".jcrop-holder>div:first").css("top"));
+
+      $.get("/doCropAvatar",{
+        "w" : w,
+        "h" : h,
+        "x" : x,
+        "y" : y
+      },function(result){
+        if(result=="1"){
+          window.location = "/";
+        }else{
+          window.location = "/setAvatar"
+        }
+      });
+    });
+  </script>
+</html>
