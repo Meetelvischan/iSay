@@ -10,7 +10,8 @@ let gm = require('gm'); //GraphicsMagick图像处理
 let router = require('./router/router.js');
 
 app.set('view engine','ejs'); //设置模板引擎
-app.use(express.static('./public'));  //设置静态服务 
+app.use(express.static('./public'));  //设置静态服务
+app.use('avatar',express.static('./avatar')); 
 
 app.set('trust proxy',1); //sesson设置
 app.use(session({
