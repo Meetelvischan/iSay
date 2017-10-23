@@ -7,97 +7,14 @@
     <title>iSay注册</title>
     <!-- 引入Bootstrap,jquery以及underscore -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <script src='js/jquery-1.11.1.min.js'></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="js/underscore.js"></script>
-    
-    <style>
-      body { padding-top: 50px; }
-      .box {
-            width: 300px;
-            border: 1px solid #dadada;
-            box-shadow: 0 5px 10px 0 rgba(0,0,0,0.4);
-            border-radius: 5px;
-            margin: 100px auto;
-        }
-        .title {
-            margin: 0 auto;
-            width: 250px;
-            height: 60px;
-            line-height: 60px;
-        }
-        .information {
-            width: 250px;
-            margin: 0 auto;
-            border-top: 1px solid #dadada;
-        }
-        label.input {
-
-            display: inline-block;
-            position: relative;
-            margin-top:30px;
-            width: 250px;
-            height: 55px;
-            border: 1px solid #dadada;
-            overflow: hidden;
-
-
-        }
-        .input input {
-            width: 230px;
-            font: 400 14px/16px "microsoft yahei";
-            outline: none;
-            border:none;
-            margin:30px 10px 0 10px;
-
-
-
-        }
-
-
-        #register input {
-            width: 250px;
-            display: block;
-            height: 40px;
-            text-align: center;
-            color: #FFFFFF;
-            background-color: #48bfde;
-            border-radius: 5px;
-            font: 700 20px/40px "microsoft yahei";
-            margin: 30px 0;
-            border:none;
-            cursor: pointer;
-            box-shadow: 0 1px 5px 0 rgba(0,0,0,0.4);
-
-        }
-        .input .notice {
-            position: absolute;
-            top: 5px;
-            left: 10px;
-            color: #48bfde;
-            font: 400 12px "microsoft yahei";
-        }
-        #register-fail {
-          display: none;
-        }
-    </style>
   </head>
   
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/">iSay</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-              <li class="active"><a href="/"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
-              
-          </ul>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </nav>
-    
+    <% include header.ejs %>
     <div class="container">
       <div class="box">
         <div class="title">

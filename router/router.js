@@ -13,13 +13,18 @@ let gm = require('gm'); //GraphicsMagick图像处理
 exports.showIndex = function(req,res,next){
   res.render('index',{
     login:req.session.login=="1"?true:false,
-    username:req.session.username
+    username:req.session.username,
+    active:"index"
   });
 };
 
 //显示注册页面
 exports.showRegister = function(req,res,next){
-  res.render('register');
+  res.render('register',{
+    login:req.session.login=="1"?true:false,
+    username:req.session.username,
+    active:"register"
+  });
 };
 
 //处理注册
@@ -56,7 +61,11 @@ exports.doRegister = function(req,res,next){
   })
 }
 exports.showLogin = function(req,res,next){
-  res.render('login');
+  res.render('login',{
+    login:req.session.login=="1"?true:false,
+    username:req.session.username,
+    active:"login"
+  });
 }
 exports.doLogin = function(req,res,next){
   //处理上传的表单内容
