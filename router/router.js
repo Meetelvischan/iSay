@@ -200,3 +200,24 @@ exports.doCropAvatar = function(req,res,next){
     })
 }
 
+//发表说说
+exports.doPost = function(req,res,next){
+  //处理上传的表单内容
+  var formidable = require('formidable');
+  var form = new formidable.IncomingForm();
+  form.parse(req,function(err,fields){
+      var username = req.session.username;
+      var content = fields.content;
+      //将发表的说说存入数据库
+      db.insertOne('post',{"username":username,"content":content},function(err,result){
+        if(err){
+          res.send("-3");
+          return;
+        }else{
+          
+          res.redirect('/');
+          
+        }
+      })  
+  })
+}

@@ -35,8 +35,10 @@ app.get('/logout',router.doLogout);
 app.get('/setAvatar',router.showSetAvatar);
 app.post('/doSetAvatar',router.doSetAvatar);
 
-app.get('/cropAvatar',router.showCropAvatar)
-app.get('/doCropAvatar',router.doCropAvatar)
+app.get('/cropAvatar',router.showCropAvatar);
+app.get('/doCropAvatar',router.doCropAvatar);
+
+app.post('/post',router.doPost);
 
 app.listen(3000);
 
