@@ -209,7 +209,7 @@ exports.doPost = function(req,res,next){
       var username = req.session.username;
       var content = fields.content;
       //将发表的说说存入数据库
-      db.insertOne('post',{"username":username,"content":content},function(err,result){
+      db.insertOne('post',{"username":username,"content":content,"date":new Date()},function(err,result){
         if(err){
           res.send("-3");
           return;
@@ -219,5 +219,13 @@ exports.doPost = function(req,res,next){
           
         }
       })  
+  })
+}
+
+//获得所有说说
+exports.getAllSaying = function(req,res,next){
+  var page = req.query.page;
+  db.find('post',{},{"pageAmount":10,"page":page,"sort":{"date":-1}},function(err,result){
+    res.json({"result":result});
   })
 }

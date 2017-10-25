@@ -40,5 +40,7 @@ app.get('/doCropAvatar',router.doCropAvatar);
 
 app.post('/post',router.doPost);
 
+app.get('/allSaying',router.getAllSaying);
+
 app.listen(3000);
 
