@@ -85,7 +85,7 @@
   <script type="text/template" id="template">
     <!-- 在此处填入需要渲染的模板 -->
     <div class="col-md-4">
-      <h3><a href="/"><img src="avatar/{{=username}}.jpg" alt="头像" class="img-thumbnail samll-avatar"></a> {{=username}}</h3> 
+      <h3><a href="/"><img src="avatar/{{=avatar}}" alt="头像" class="img-thumbnail samll-avatar"></a> {{=username}}</h3> 
       <p>{{=content}}</p>
       <p><a class="btn btn-default" href="#" role="button">查看更多 &raquo;</a></p>
     </div>
@@ -133,14 +133,30 @@
 
       var compiled = _.template($("#template").html())
 
-      $.get('allSaying?page=0',function(result){
-        for(var i=0;i<result.result.length;i++){
-          var html = compiled(result.result[i]);
-          $("#all-saying").append($(html));
+      $.ajax({
+        "url":"allSaying?page=0",
+        "type":"get",
+        "success":function(result1){
+          
+          iterator(0);
+          function iterator(i){
+            if(i==result1.result.length){
+              return;
+            }
+            $.get('getUserInfo?username='+result1.result[i].username,function(result2){
+              console.log(result2);
+              result1.result[i].avatar = result2[0].avatar;
+              
+              var html = compiled(result1.result[i]);
+              $("#all-saying").append($(html));
+            })
+            iterator(i+1);
+          }
         }
+
       })
 
-
+     
 
 
 

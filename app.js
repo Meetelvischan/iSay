@@ -42,5 +42,7 @@ app.post('/post',router.doPost);
 
 app.get('/allSaying',router.getAllSaying);
 
+app.get('/getUserInfo',router.getUserInfo);
+
 app.listen(3000);
 
