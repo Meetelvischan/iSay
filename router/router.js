@@ -236,3 +236,10 @@ exports.getUserInfo = function(req,res,next){
     res.json(result);
   })
 }
+
+//获取说说的数量
+exports.getSayingAmount = function(req,res,next){
+  db.getCount('post',function(count){
+    res.send(count.toString());
+  })
+}

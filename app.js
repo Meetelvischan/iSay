@@ -44,5 +44,7 @@ app.get('/allSaying',router.getAllSaying);
 
 app.get('/getUserInfo',router.getUserInfo);
 
+app.get('/sayingAmount',router.getSayingAmount);
+
 app.listen(3000);
 

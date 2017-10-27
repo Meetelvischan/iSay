@@ -155,6 +155,14 @@ img#avatar {
     /* disable cut copy paste */
     -webkit-user-select: none;
   }
+
+  .saying-box {
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    margin: 10px;
+    padding: 0 10px;
+  }
   /* Selection Handles */
   .jcrop-handle {
     background-color: #333333;

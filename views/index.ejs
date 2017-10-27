@@ -79,15 +79,25 @@
           <div class="row" id="all-saying"></div>
         
         </div>
-          
+
+        <!-- 分页 -->
+        <div class="container">
+          <nav aria-label="Page navigation" class="col-lg-offset-5">
+            <ul class="pagination">
+            </ul>
+          </nav>
+        </div>
         <% include footer.ejs %>
   </body>  
-  <script type="text/template" id="template">
-    <!-- 在此处填入需要渲染的模板 -->
+
+  <!-- 在此处填入需要渲染的模板 -->
+  <script type="text/template" id="template"> 
     <div class="col-md-4">
-      <h3><a href="/"><img src="avatar/{{=avatar}}" alt="头像" class="img-thumbnail samll-avatar"></a> {{=username}}</h3> 
-      <p>{{=content}}</p>
-      <p><a class="btn btn-default" href="#" role="button">查看更多 &raquo;</a></p>
+      <div class="saying-box">
+        <h3><a href="/"><img src="avatar/{{=avatar}}" alt="头像" class="img-thumbnail samll-avatar"></a> {{=username}}</h3> 
+        <p>{{=content}}</p>
+        <p><a class="btn btn-default" href="#" role="button">查看更多 &raquo;</a></p>
+      </div>
     </div>
   </script>
 
@@ -97,7 +107,6 @@
   <script>
     $(function(){
       $('.dropdown-toggle').dropdown();
-
 
       $("#login").click(function(){
         var username = $("#username").val();
@@ -131,36 +140,59 @@
         }
       })
 
-      var compiled = _.template($("#template").html())
-
-      $.ajax({
-        "url":"allSaying?page=0",
+      //获取所有说说
+      var compiled = _.template($("#template").html());
+      getPage(0);
+      function getPage(page){
+        $('#all-saying').html("");
+        $.ajax({
+        "url":"allSaying?page="+page,
         "type":"get",
         "success":function(result1){
-          
+          //用迭代器获取users集合里用户头像的地址
           iterator(0);
           function iterator(i){
             if(i==result1.result.length){
               return;
             }
             $.get('getUserInfo?username='+result1.result[i].username,function(result2){
-              console.log(result2);
               result1.result[i].avatar = result2[0].avatar;
-              
               var html = compiled(result1.result[i]);
               $("#all-saying").append($(html));
             })
             iterator(i+1);
           }
         }
+        })
+      }
 
+      //分页
+      //获取分页数
+      $.get('/sayingAmount',function(result){
+        var pageAmount = Math.ceil(result/10);
+        for(var i=0;i<pageAmount;i++){
+          $('.pagination').append('<li><a href="javascript:void(0);">'+(i+1)+'</a></li>');
+        }
+      //默认在第一页
+      $(".pagination li:first").addClass('active');
+    
+      //点击切换
+      $(".pagination li").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        var num = $(this).index();
+        getPage(num);
       })
 
-     
 
+      })
+      
+      
 
-
+      
+      
+      
     })
+    
     
     
     
